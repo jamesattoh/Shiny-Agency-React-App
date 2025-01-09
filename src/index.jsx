@@ -6,7 +6,8 @@ import Home from './pages/Home'
 import Survey from './pages/Survey'
 import Header from './components/Header'
 
-
+import ClientForm from './components/ClientForm';
+import FreelanceForm from './components/FreelanceForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +16,10 @@ root.render(
       <Header />
       <Routes>
         <Route path='/' element={ <Home />} />
-        <Route path='/survey' element={ <Survey />} />
+        <Route path='/survey' element={ <Survey />}>
+          <Route path='client' element={ <ClientForm />}/>
+          <Route path='freelance' element={ <FreelanceForm />}/>
+        </Route>
         <Route />
       </Routes>
     </Router>
