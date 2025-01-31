@@ -2,6 +2,7 @@ import styled from "styled-components"
 import HomeIllustration from "../../assets/home-illustration.svg"
 import colors from "../../utils/style/colors"
 import { StyledLink } from "../../utils/style/Atoms"
+import { useEffect } from "react"
 
 const Illustration = styled.img `
   flex: 1;
@@ -34,6 +35,11 @@ const StyledTitle = styled.h2`
 `
 
 function Home() {
+
+  useEffect(() => {
+    document.title = `Shiny Agency`
+  })
+  
   return (
     <HomeWrapper>
       <HomeContainer>

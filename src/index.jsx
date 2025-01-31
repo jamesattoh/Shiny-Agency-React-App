@@ -12,10 +12,14 @@ import Freelances from './pages/Freelances';
 
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-    * {
-        font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    }
+const GlobalStyle = createGlobalStyle` //creation du style global dy projet avec createGlobalStyle
+  * {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  }
+
+  body {
+      margin: 0;
+  }
 `
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,7 +30,7 @@ root.render(
       <Header /> {/* gere la navigation; doit rester a la racine du projet  */}
       <Routes>
         <Route path='/' element={ <Home />} />
-        <Route path='/survey/:questionNumber' element={ <Survey />} />
+        <Route path='/survey/:questionNumber' element={ <Survey />} /> {/* utilisation des parametres passes dans l'url  */}
         <Route path='*' element={ <Error />} />
         <Route path='/results' element={ <Results /> }/>
         <Route path='/freelances' element={ <Freelances /> }/>

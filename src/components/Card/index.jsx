@@ -50,7 +50,7 @@ function Card({ label, title, picture,}) {
     )
 }
  
-Card.propTypes = {
+Card.propTypes = { //Les PropTypes sont utilisés dans React pour valider les types des propriétés (props) passées aux composants.
     label: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired, //sera obligatoire lors de l'utilisation de Card
     picture: PropTypes.string,
