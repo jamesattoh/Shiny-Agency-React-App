@@ -26,7 +26,7 @@ const LinkWrapper = styled.div`
     color: black;
   }
   & a:first-of-type {
-    margin-right: 20px;
+    margin-right: 20px; //une marge droite au premier lien (élément <a>) enfant du div
   }
 `
 
@@ -37,8 +37,9 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
     const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
     const nextQuestionNumber = questionNumberInt + 1
     
-    const [surveyData, setSurveyData] = useState({})
+    const [surveyData, setSurveyData] = useState({}) //surveyData va nous permettre de stocker l’objet (qui a pour clés des nombres) qui a été retourné par l’API.
     const [isDataLoading, setDataLoading] = useState(false)
+    //const [error, setError] = useState(false)
 
     // Cette syntaxe permet aussi bien de faire des calls API.
     // Mais pour utiliser await dans une fonction, il faut que celle-ci soit async (pour asynchrone).
@@ -58,25 +59,28 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
     // }
 
     useEffect(() => {
-        // fetchData()
-        setDataLoading(true)
-        fetch(`http://localhost:8000/survey`).then((response) =>
-        response.json().then(({ surveyData }) => {
-            setSurveyData(surveyData)
-            setDataLoading(false)
-        })
-        )
+      // fetchData()
+      setDataLoading(true) //les données sont en cours de chargement
+      fetch(`http://localhost:8000/survey`).then((response) =>
+      response.json().then(({ surveyData }) => { //Convertir la réponse en JSON
+        setSurveyData(surveyData) //mettre à jour l'état surveyData avec les données récupérées.
+        setDataLoading(false) //Indiquer que le chargement des données est terminé
+      })
+      )
     }, [])
 
+    // if (error) {
+    //   return <span>Oups il y a eu un problème</span>
+    // }
 
     return (
         <SurveyContainer>
             <QuestionTitle>Question {questionNumber}</QuestionTitle>
 
-            {isDataLoading ? (
+            {isDataLoading ? ( //Affiche un loader si les données sont en cours de chargement, sinon affiche le contenu de la question actuelle
                 <Loader />
             ) : (
-                <QuestionContent>{surveyData[questionNumber]}</QuestionContent>
+                <QuestionContent>{surveyData[questionNumber]}</QuestionContent> //on peut tout simplement accéder à une question avec surveyData[questionNumber]
             )}
             
             <LinkWrapper>

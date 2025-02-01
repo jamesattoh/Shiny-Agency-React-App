@@ -24,7 +24,7 @@ const LeftCol = styled.div`
   flex-direction: column;
   justify-content: center;
   flex: 1; //occuper l'espace disponible 
-  ${StyledLink}{
+  ${StyledLink}{ // $ poour cibler le composant StyledLink a l'interieur de LeftCol
     max-width: 200px;
   }
 `

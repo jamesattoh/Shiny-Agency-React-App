@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import colors from './colors'
 
+// Définition de l'animation de rotation
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -12,12 +13,12 @@ const rotate = keyframes`
   }
 `
 
-export const Loader = styled.div`
+export const Loader = styled.div` //un composant sytlisé, utilisé pour afficher un indicateur de chargement animé. 
   padding: 10px;
   border: 6px solid ${colors.primary};
   border-bottom-color: transparent;
   border-radius: 22px;
-  animation: ${rotate} 1s infinite linear;
+  animation: ${rotate} 1s infinite linear; //Applique l'animation de rotation définie plus haut
   height: 0;
   width: 0;
 `
