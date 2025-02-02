@@ -31,7 +31,8 @@ const CardWrapper = styled.div`
     background-color: ${colors.backgroundLight};
     justify-content: space-around;
     border-radius: 30px;
-    width: 350px;
+    width: 300px;
+    height: 300px;
     transition: 200ms;
     &:hover {
         cursor: pointer; //change le curseur fleche en curseur "main"
