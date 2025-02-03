@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle` //creation du style global dy projet avec
   }
 
   body {
-    margin: 0;
+    margin: 0; //supprimer toute marge par défaut appliquée par le navigateur au corps de la page
   }
 `
 

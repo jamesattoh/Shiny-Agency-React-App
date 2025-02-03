@@ -35,8 +35,8 @@ const CardsContainer = styled.div`
   gap: 24px;
   grid-template-rows: 350px 350px;
   grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
   align-items: center;
+  justify-items: center;
 `
 const PageTitle = styled.h1`
   font-size: 30px;
@@ -63,20 +63,37 @@ function Freelances() {
   const [isDataLoading, setDataLoading] = useState(false)
   const [error, setError] = useState(false)
 
+  // useEffect(()=>{
+
+  //   setDataLoading(true)
+  //   fetch(`http://localhost:8000/freelances`).then((response) =>
+  //   response.json().then(({ freelancersList }) => {
+  //     setFreelancersList(freelancersList)
+  //     setDataLoading(false) //Indiquer que le chargement des données est terminé
+  //   })
+  //   )
+  // }, [])
+
   useEffect(()=>{
+    async function fetchFreelances() {
+      setDataLoading(true)
+      try{
+        const response = await fetch(`http://localhost:8000/freelances`)
+        const {freelancersList} = await response.json()
+        setFreelancersList(freelancersList)
+      }catch(err){
+        console.log('==== error ====', err)
+        setError(true)
+      }finally{
+        setDataLoading(false)
+      }
+    }
 
-    setDataLoading(true)
-    fetch(`http://localhost:8000/freelances`).then((response) =>
-    response.json().then(({ freelancersList }) => {
-      setFreelancersList(freelancersList)
-      setDataLoading(false) //Indiquer que le chargement des données est terminé
-    })
-    )
-  }, [])
+    fetchFreelances()
+  },[])
 
-  if (!error){
-    setError(true)
-    return <span>Oups il y a eu un problème</span>
+  if(error){
+    return <span>Oups il y a eu un probleme</span>
   }
 
   return (
