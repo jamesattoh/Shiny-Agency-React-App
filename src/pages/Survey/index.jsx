@@ -1,9 +1,11 @@
 import { Link, useParams } from "react-router-dom"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { Loader } from '../../utils/style/Atoms'
+
+import { SurveyContext } from '../../utils/context'
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -29,6 +31,31 @@ const LinkWrapper = styled.div`
     margin-right: 20px; //une marge droite au premier lien (élément <a>) enfant du div
   }
 `
+const ReplyBox = styled.button`
+  border: none;
+  height: 100px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.backgroundLight};
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: ${(props) =>
+    props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'};
+  &:first-child {
+    margin-right: 15px;
+  }
+  &:last-of-type {
+    margin-left: 15px;
+  }
+`
+
+const ReplyWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
 
 
 function Survey() { //ce composant repose principalement sur l'utilisation des parametres passes dans l'url
@@ -39,6 +66,8 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
     
     const [surveyData, setSurveyData] = useState({}) //surveyData va nous permettre de stocker l’objet (qui a pour clés des nombres) qui a été retourné par l’API.
     const [isDataLoading, setDataLoading] = useState(false)
+
+    const { answers, saveAnswers } = useContext(SurveyContext)
     //const [error, setError] = useState(false)
 
     // Cette syntaxe permet aussi bien de faire des calls API.
@@ -58,6 +87,13 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
     //   }
     // }
 
+    /**on sauvegarde la reponse a une question dans le contexte de l'application
+     * L'objet { [questionNumber]: answer } crée un objet avec une clé dynamique. La clé de l'objet est la valeur de questionNumber, et la valeur associée à cette clé est answer.
+    **/
+    function saveReply(answer) {
+      saveAnswers({ [questionNumber]: answer })
+    }
+    
     useEffect(() => {
       // fetchData()
       setDataLoading(true) //les données sont en cours de chargement
@@ -83,6 +119,21 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
                 <QuestionContent>{surveyData[questionNumber]}</QuestionContent> //on peut tout simplement accéder à une question avec surveyData[questionNumber]
             )}
             
+            <ReplyWrapper>
+              <ReplyBox
+                onClick={() => saveReply(true)}
+                isSelected={answers[questionNumber] === true} //donc dans le tableau answers, la valeur de la reponse sera enregistrée a chaque clic
+              >
+                Oui
+              </ReplyBox>
+              <ReplyBox
+                onClick={() => saveReply(false)}
+                isSelected={answers[questionNumber] === false}
+              >
+                Non
+              </ReplyBox>
+            </ReplyWrapper>
+
             <LinkWrapper>
                 <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
                 { questionNumberInt === 10 ? (
