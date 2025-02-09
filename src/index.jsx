@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <ThemeProvider>
+      <ThemeProvider> {/*ThemeContext.Provider est utilise ici pour fournir le contexte personnalisé */}
         <GlobalStyle/>
         <Header /> {/* gere la navigation; doit rester a la racine du projet  */}
         <Routes>
