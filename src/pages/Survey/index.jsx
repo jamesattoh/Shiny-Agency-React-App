@@ -25,7 +25,7 @@ const QuestionContent = styled.span`
 const LinkWrapper = styled.div`
   padding-top: 30px;
   & a {
-    color: black;
+    color: black; // Cible tous les éléments <a> à l'intérieur de LinkWrapper
   }
   & a:first-of-type {
     margin-right: 20px; //une marge droite au premier lien (élément <a>) enfant du div
@@ -42,12 +42,12 @@ const ReplyBox = styled.button`
   border-radius: 30px;
   cursor: pointer;
   box-shadow: ${(props) =>
-    props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'};
+    props.$isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'}; //ne pas oublier le $ pour indiquer a styled-components qu'il ne doit pas passer cette prop au DOM
   &:first-child {
-    margin-right: 15px;
+    margin-right: 15px; // Applique une marge droite au premier enfant
   }
   &:last-of-type {
-    margin-left: 15px;
+    margin-left: 15px; // Applique une marge gauche au dernier enfant
   }
 `
 
@@ -122,13 +122,13 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
             <ReplyWrapper>
               <ReplyBox
                 onClick={() => saveReply(true)}
-                isSelected={answers[questionNumber] === true} //donc dans le tableau answers, la valeur de la reponse sera enregistrée a chaque clic
+                $isSelected={answers[questionNumber] === true} //donc dans le tableau answers, la valeur de la reponse sera enregistrée a chaque clic
               >
                 Oui
               </ReplyBox>
               <ReplyBox
                 onClick={() => saveReply(false)}
-                isSelected={answers[questionNumber] === false}
+                $isSelected={answers[questionNumber] === false}
               >
                 Non
               </ReplyBox>

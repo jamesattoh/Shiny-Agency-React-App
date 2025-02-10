@@ -23,7 +23,6 @@ export const Loader = styled.div` //un composant sytlisé, utilisé pour affiche
   width: 0;
 `
 
-
 export const StyledLink = styled(Link)` //une autre facon de rendre expotable un composant
   padding: 10px 15px;
   color: #8186a0;

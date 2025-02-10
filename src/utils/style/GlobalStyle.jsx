@@ -9,14 +9,14 @@ const StyledGlobalStyle = createGlobalStyle` //creation du style global dy proje
     }
  
     body {
-        background-color: ${({ isDarkMode }) => (isDarkMode ? '#2F2E41' : 'white')};
+        background-color: ${({ isDarkMode }) =>
+            (isDarkMode ? '#2F2E41' : 'white')};
         margin: 0;  //supprimer toute marge par défaut appliquée par le navigateur au corps de la page
     }
 `
 
 function GlobalStyle() {
     const { theme } = useContext(ThemeContext)
-
     return <StyledGlobalStyle isDarkMode={theme === 'dark'} />
 }
 
