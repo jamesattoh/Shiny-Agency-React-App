@@ -1,34 +1,10 @@
 import Card from '../../components/Card'
-//import DefaultPicture from '../../assets/profile.png'
 import styled from 'styled-components'
 
 import colors from '../../utils/style/colors'
 import { useEffect, useState } from 'react'
 import { Loader } from '../../utils/style/Atoms'
  
-// const freelanceProfiles = [
-//     {
-//         name: 'Jane Doe',
-//         jobTitle: 'Devops',
-//         picture: DefaultPicture,
-//     },
-//     {
-//         name: 'John Doe',
-//         jobTitle: 'Developpeur frontend',
-//         picture: DefaultPicture,
-//     },
-//     {
-//         name: 'Jeanne Biche',
-//         jobTitle: 'Développeuse Fullstack',
-//         picture: DefaultPicture,
-//     },
-//     {
-//       name: 'Lorem ipsum',
-//       jobTitle: 'UX Designer',
-//       picture: DefaultPicture,
-//     },
-// ]
-
 
 const CardsContainer = styled.div`
   display: grid;

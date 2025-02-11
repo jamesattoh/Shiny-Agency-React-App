@@ -29,7 +29,6 @@ export const StyledLink = styled(Link)` //une autre facon de rendre expotable un
   text-decoration: none;
   font-size: 18px;
   text-align: center;
-
   //utilisation d'une prop pour en styliser une autre
   ${(props) =>
     props.$isFullLink && // props.$isFullLink est utilisé ici pour appliquer des styles conditionnels au composant StyledLink. si isFullLink etait un composant htmml, plus besoin du $
