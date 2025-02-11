@@ -25,7 +25,7 @@ export const Loader = styled.div` //un composant sytlisé, utilisé pour affiche
 
 export const StyledLink = styled(Link)` //une autre facon de rendre expotable un composant
   padding: 10px 15px;
-  color: #8186a0;
+  color: ${({ $theme }) => ($theme === 'light' ? '#8186a0' : '#ffffff')}; //utilisation des props(non standard) qui ne seront pas transmises au dOM
   text-decoration: none;
   font-size: 18px;
   text-align: center;

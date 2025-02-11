@@ -3,6 +3,7 @@ import HomeIllustration from "../../assets/home-illustration.svg"
 import colors from "../../utils/style/colors"
 import { StyledLink } from "../../utils/style/Atoms"
 import { useEffect } from "react"
+import { useTheme } from "../../utils/hooks"
 
 const Illustration = styled.img `
   flex: 1;
@@ -17,7 +18,8 @@ const HomeContainer = styled.div`
   display: flex;
   flex-direction: row;
   max-width: 1200px;
-  background-color: ${colors.backgroundLight};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
 `
 const LeftCol = styled.div`
   display: flex;
@@ -29,6 +31,7 @@ const LeftCol = styled.div`
   }
 `
 const StyledTitle = styled.h2`
+  color: ${({ theme }) => (theme === 'light' ? '#2F2E41' : '#ffffff')};
   padding-bottom: 30px;
   max-width: 250px;
   line-height: 50px;
@@ -36,15 +39,17 @@ const StyledTitle = styled.h2`
 
 function Home() {
 
+  const {theme} = useTheme()
+
   useEffect(() => {
     document.title = `Shiny Agency`
   })
   
   return (
     <HomeWrapper>
-      <HomeContainer>
+      <HomeContainer theme={theme}>
         <LeftCol>
-          <StyledTitle>
+          <StyledTitle theme={theme}>
             Repérez vos besoins, on s'occupe du reste, avec les meilleurs talents
           </StyledTitle>
           <StyledLink to="/survey/1" $isFullLink>

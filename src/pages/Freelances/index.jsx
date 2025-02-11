@@ -2,8 +2,8 @@ import Card from '../../components/Card'
 import styled from 'styled-components'
 
 import colors from '../../utils/style/colors'
-import { useEffect, useState } from 'react'
 import { Loader } from '../../utils/style/Atoms'
+import { useFetch, useTheme } from '../../utils/hooks'
  
 
 const CardsContainer = styled.div`
@@ -16,14 +16,14 @@ const CardsContainer = styled.div`
 `
 const PageTitle = styled.h1`
   font-size: 30px;
-  color: black;
+  color: ${({ theme }) => (theme === 'light' ? colors.secondary : '#ffffff')};
   font-weight: 300;
   text-align: center;
   padding-bottom: 30px;
 `
 const PageSubtitle = styled.h2`
   font-size: 20px;
-  color: ${colors.secondary};
+  color: ${({ theme }) => (theme === 'light' ? colors.secondary : '#ffffff')};
   font-weight: 300;
   text-align: center;
   padding-bottom: 30px;
@@ -35,51 +35,24 @@ const LoaderWrapper = styled.div`
 
 
 function Freelances() {
-  const [freelancersList, setFreelancersList] = useState([]) //[] pour les listes et {} pour les objets
-  const [isDataLoading, setDataLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const {theme} = useTheme()
 
-  // useEffect(()=>{
+  const { data, isLoading, error} = useFetch(`http://localhost:8000/freelances`)
 
-  //   setDataLoading(true)
-  //   fetch(`http://localhost:8000/freelances`).then((response) =>
-  //   response.json().then(({ freelancersList }) => {
-  //     setFreelancersList(freelancersList)
-  //     setDataLoading(false) //Indiquer que le chargement des données est terminé
-  //   })
-  //   )
-  // }, [])
-
-  useEffect(()=>{
-    async function fetchFreelances() {
-      setDataLoading(true)
-      try{
-        const response = await fetch(`http://localhost:8000/freelances`)
-        const {freelancersList} = await response.json()
-        setFreelancersList(freelancersList)
-      }catch(err){
-        console.log('==== error ====', err)
-        setError(true)
-      }finally{
-        setDataLoading(false)
-      }
-    }
-
-    fetchFreelances()
-  },[])
+  const freelancersList = data?.freelancersList
 
   if(error){
     return <span>Oups il y a eu un probleme</span>
   }
-
+  
   return (
     <div>
-      <PageTitle>Trouvez votre prestataire</PageTitle>
-      <PageSubtitle>Chez Shiny, nous réunissons les meilleurs profils pour vous.</PageSubtitle>
+      <PageTitle theme={theme}>Trouvez votre prestataire</PageTitle>
+      <PageSubtitle theme={theme}>Chez Shiny, nous réunissons les meilleurs profils pour vous.</PageSubtitle>
       
-        {isDataLoading ? (
+        {isLoading ? (
           <LoaderWrapper>
-            <Loader />
+            <Loader theme={theme}/>
           </LoaderWrapper>
         ) : (
           <CardsContainer>

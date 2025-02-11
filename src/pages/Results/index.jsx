@@ -2,9 +2,8 @@ import { useContext } from 'react' //Hook de React pour utiliser le contexte
 import { SurveyContext } from '../../utils/context'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { useFetch } from '../../utils/hooks'
+import { useFetch, useTheme } from '../../utils/hooks'
 import { StyledLink, Loader } from '../../utils/style/Atoms'
-import { ThemeContext } from '../../utils/context'
 
 const ResultsContainer = styled.div`
   display: flex;
@@ -65,12 +64,14 @@ function formatFetchParams(answers) {
 }
 
 function Results() {
-  const { theme } = useContext(ThemeContext) //Récupère le thème actuel
+
+  const { theme } = useTheme()
+  //const { theme } = useContext(ThemeContext) //Récupère le thème actuel
   const { answers } = useContext(SurveyContext) //Récupère les réponses du questionnaire
   const fetchParams = formatFetchParams(answers) //Formate les paramètres de la requête HTTP
 
   const { data, isLoading, error } = useFetch( //Effectue la requête HTTP pour obtenir les résultats
-  `http://localhost:8000/results?${fetchParams}`
+  `http://localhost:8000/results?${fetchParams}` //L'URL de la requête inclut les paramètres formatés (fetchParams), ce qui permet de passer les réponses du questionnaire à l'API.
   )
 
   if (error) {
@@ -78,12 +79,9 @@ function Results() {
   }
   
   /**data?.resultsData signifie "accéder à resultsData seulement si data n'est pas null ou undefined"
-   * 
-   * resultsData est la propriété de l'objet data qui contient les résultats du questionnaire et est aussi predefinie danas l'api sur http://localhost:8000/results
-   * 
-   * L'utilisation du chaînage optionnel permet d'éviter les erreurs lorsque data n'est pas encore disponible (par exemple, pendant le chargement des données). Sans le chaînage optionnel, essayer d'accéder à data.resultsData lorsque data est null ou undefined provoquerait une erreur.
-   * 
-   * forme simple : const resultsData = data ? data.resultsData : undefined 
+   *   resultsData est la propriété de l'objet data qui contient les résultats du questionnaire et est aussi predefinie danas l'api sur http://localhost:8000/results
+   *   L'utilisation du chaînage optionnel permet d'éviter les erreurs lorsque data n'est pas encore disponible (par exemple, pendant le chargement des données). Sans le chaînage optionnel, essayer d'accéder à data.resultsData lorsque data est null ou undefined provoquerait une erreur.
+   *   forme simple : const resultsData = data ? data.resultsData : undefined 
   */
   const resultsData = data?.resultsData
 

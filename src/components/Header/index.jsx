@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import { StyledLink } from '../../utils/style/Atoms'
 import DarkLogo from '../../assets/dark-logo.png'
+import LightLogo from '../../assets/light-logo.png'
+import { useTheme } from '../../utils/hooks'
 
 const HomeLogo = styled.img`
     height: 78px
@@ -16,15 +18,17 @@ const NavContainer = styled.nav`
 `
 
 function Header() {
+    const { theme } = useTheme()
+
     return (
         <NavContainer>
             <Link to="/">
-                <HomeLogo src={DarkLogo}/>
+                <HomeLogo src={theme === 'light' ? DarkLogo : LightLogo}/>
             </Link>
             <div>
-                <StyledLink to="/">Accueil</StyledLink>
-                <StyledLink to="/freelances">Profils</StyledLink>
-                <StyledLink to="/survey/1" $isFullLink> {/*$ => signaler a styled-components  que notre prop nous sert pour le style, et qu'elle ne doit pas être passée dans le DOM; $ pour composant react, sans le $ pour simple balise comme a */}
+                <StyledLink $theme={theme} to="/">Accueil</StyledLink>
+                <StyledLink $theme={theme} to="/freelances">Profils</StyledLink>
+                <StyledLink $theme={theme} to="/survey/1" $isFullLink> {/*$ => signaler a styled-components  que notre prop nous sert pour le style, et qu'elle ne doit pas être passée dans le DOM; $ pour composant react, sans le $ pour simple balise comme a */}
                     Faire le test
                 </StyledLink>
             </div>

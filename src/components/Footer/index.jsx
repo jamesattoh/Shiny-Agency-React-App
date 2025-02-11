@@ -16,7 +16,7 @@ const NightModeButton = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: ${colors.secondary};
+    color: ${({ theme }) => (theme === 'light' ? colors.secondary  : '#ffffff')};
 `
 
 function Footer() {
@@ -25,7 +25,7 @@ function Footer() {
 
     return (
         <FooterContainer>
-            <NightModeButton onClick={() => toggleTheme()}>
+            <NightModeButton theme={theme} onClick={() => toggleTheme()}>
                 Changer de mode : { theme === 'light' ? '☀️' : '🌙' }
             </NightModeButton>
         </FooterContainer>
