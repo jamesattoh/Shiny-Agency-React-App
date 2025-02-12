@@ -7,7 +7,7 @@ import { Loader } from '../../utils/style/Atoms'
 
 import { SurveyContext } from '../../utils/context'
 
-import { useFetch } from "../../utils/hooks"
+import { useFetch, useTheme } from "../../utils/hooks"
 
 
 const SurveyContainer = styled.div`
@@ -19,16 +19,18 @@ const SurveyContainer = styled.div`
 const QuestionTitle = styled.h2`
   text-decoration: underline;
   text-decoration-color: ${colors.primary};
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
 const QuestionContent = styled.span`
   margin: 30px;
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
 const LinkWrapper = styled.div`
   padding-top: 30px;
-  & a {
-    color: black; // Cible tous les éléments <a> à l'intérieur de LinkWrapper
+  & a {  // Cible tous les éléments <a> à l'intérieur de LinkWrapper
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
   }
   & a:first-of-type {
     margin-right: 20px; //une marge droite au premier lien (élément <a>) enfant du div
@@ -41,7 +43,9 @@ const ReplyBox = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.backgroundLight};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
   border-radius: 30px;
   cursor: pointer;
   box-shadow: ${(props) =>
@@ -67,6 +71,7 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
   const nextQuestionNumber = questionNumberInt + 1
   
+  const { theme } = useTheme()
   const { answers, saveAnswers } = useContext(SurveyContext)
 
   /*on sauvegarde la reponse a une question dans le contexte de l'application
@@ -89,30 +94,32 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
 
   return (
       <SurveyContainer>
-          <QuestionTitle>Question {questionNumber}</QuestionTitle>
+          <QuestionTitle theme={theme}>Question {questionNumber}</QuestionTitle>
 
           {isLoading ? ( //Affiche un loader si les données sont en cours de chargement, sinon affiche le contenu de la question actuelle
               <Loader />
           ) : (
-              <QuestionContent>{surveyData && surveyData[questionNumber]}</QuestionContent> //on peut tout simplement accéder à une question avec surveyData[questionNumber], mais verifier d'abord si surveyData est defini
+              <QuestionContent theme={theme}>{surveyData && surveyData[questionNumber]}</QuestionContent> //on peut tout simplement accéder à une question avec surveyData[questionNumber], mais verifier d'abord si surveyData est defini
           )}
           
           <ReplyWrapper>
             <ReplyBox
               onClick={() => saveReply(true)}
               $isSelected={answers[questionNumber] === true} //donc dans le tableau answers, la valeur de la reponse sera enregistrée a chaque clic
+              theme={theme}
             >
               Oui
             </ReplyBox>
             <ReplyBox
               onClick={() => saveReply(false)}
               $isSelected={answers[questionNumber] === false}
+              theme={theme}
             >
               Non
             </ReplyBox>
           </ReplyWrapper>
 
-          <LinkWrapper>
+          <LinkWrapper theme={theme}>
               <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
               { questionNumberInt === 10 ? (
                   <Link to="/results">Résultats</Link>

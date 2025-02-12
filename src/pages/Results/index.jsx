@@ -32,7 +32,7 @@ const DescriptionWrapper = styled.div`
 
 const JobTitle = styled.span`
   color: ${({ theme }) =>
-    theme === 'light' ? colors.primary : colors.backgroundLight};
+    theme === 'light' ? colors.primary : colors.tertiary};
   text-transform: capitalize;
 `
 
@@ -65,8 +65,7 @@ function formatFetchParams(answers) {
 
 function Results() {
 
-  const { theme } = useTheme()
-  //const { theme } = useContext(ThemeContext) //Récupère le thème actuel
+  const { theme } = useTheme()   //Récupère le thème actuel
   const { answers } = useContext(SurveyContext) //Récupère les réponses du questionnaire
   const fetchParams = formatFetchParams(answers) //Formate les paramètres de la requête HTTP
 
