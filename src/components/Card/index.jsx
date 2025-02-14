@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import { useTheme } from "../../utils/hooks"
+import { useState } from "react"
 
 const CardLabel = styled.span`
     color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
@@ -45,11 +46,15 @@ const CardWrapper = styled.div`
 
 function Card({ label, title, picture,}) {
     const { theme } = useTheme()
+    const [isFavorite, setIsFavorite] = useState(false)
+    const star = isFavorite ? '⭐️' : ''
     return (
-        <CardWrapper theme={theme}>
+        <CardWrapper theme={theme} onClick={() => setIsFavorite(!isFavorite)}>
             <CardLabel theme={theme}>{label}</CardLabel> {/**on utilise theme sans le $ car CardLabel est un composant stylisé et non un element Dom natif */}
             <CardImage src={picture} alt="freelance"/>
-            <CardTitle theme={theme}>{title}</CardTitle>
+            <CardTitle theme={theme}>
+            {star} {title} {star}
+            </CardTitle>
         </CardWrapper>
     )
 }
