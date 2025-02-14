@@ -53,7 +53,7 @@ const LoaderWrapper = styled.div`
 `
 
 /** Fonction pour formater les paramètres de la requête HTTP en fonction des réponses du questionnaire. */
-function formatFetchParams(answers) {
+function formatQueryParams(answers) {
   const answerNumbers = Object.keys(answers)
 
   return answerNumbers.reduce((previousParams, answerNumber, index) => {
@@ -63,14 +63,26 @@ function formatFetchParams(answers) {
   }, '')
 }
 
+/** formatJobList prend trois arguments : un titre (title), la longueur de la liste (listLength), et l'index de l'élément (index).
+Si l'élément n'est pas le dernier de la liste (index < listLength - 1), la fonction ajoute une virgule à la fin du titre.
+Si l'élément est le dernier de la liste (index === listLength - 1), la fonction ne met pas de virgule. */
+
+export function formatJobList(title, listLength, index) {
+  if (index === listLength - 1) {
+    return title
+  }else{
+    return `${title},`
+  }
+}
+
 function Results() {
 
   const { theme } = useTheme()   //Récupère le thème actuel
   const { answers } = useContext(SurveyContext) //Récupère les réponses du questionnaire
-  const fetchParams = formatFetchParams(answers) //Formate les paramètres de la requête HTTP
+  const queryParams = formatQueryParams(answers) //Formate les paramètres de la requête HTTP
 
   const { data, isLoading, error } = useFetch( //Effectue la requête HTTP pour obtenir les résultats
-  `http://localhost:8000/results?${fetchParams}` //L'URL de la requête inclut les paramètres formatés (fetchParams), ce qui permet de passer les réponses du questionnaire à l'API.
+  `http://localhost:8000/results?${queryParams}` //L'URL de la requête inclut les paramètres formatés (queryParams), ce qui permet de passer les réponses du questionnaire à l'API.
   )
 
   if (error) {
@@ -98,8 +110,7 @@ function Results() {
               key={`result-title-${index}-${result.title}`}
               theme={theme}
             >
-              {result.title}
-              {index === resultsData.length - 1 ? '' : ','}
+              {formatJobList(result.title, resultsData.length, index)}
             </JobTitle>
           ))}
       </ResultsTitle>
