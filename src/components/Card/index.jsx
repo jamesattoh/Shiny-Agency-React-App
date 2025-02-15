@@ -54,7 +54,7 @@ function Card({ label, title, picture,}) {
         <CardWrapper theme={theme} onClick={() => setIsFavorite(!isFavorite)}>
             <CardLabel theme={theme}>{label}</CardLabel> {/**on utilise theme sans le $ car CardLabel est un composant stylisé et non un element Dom natif */}
             <CardImage src={picture} alt="freelance"/>
-            <CardTitle theme={theme}>
+            <CardTitle  data-testid="card" theme={theme}>
                 {star} {title} {star}
             </CardTitle>
         </CardWrapper>
