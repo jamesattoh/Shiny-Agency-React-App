@@ -49,10 +49,10 @@ function Freelances() {
     <div>
       <PageTitle theme={theme}>Trouvez votre prestataire</PageTitle>
       <PageSubtitle theme={theme}>Chez Shiny, nous réunissons les meilleurs profils pour vous.</PageSubtitle>
-      
+
         {isLoading ? (
           <LoaderWrapper>
-            <Loader theme={theme}/>
+            <Loader theme={theme}  data-testid="loader"/>
           </LoaderWrapper>
         ) : (
           <CardsContainer>
