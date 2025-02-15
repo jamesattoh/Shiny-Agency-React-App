@@ -1,4 +1,4 @@
-import Card from './'
+import Card from '.'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { ThemeProvider } from '../../utils/context'
 
