@@ -64,44 +64,40 @@ const CardWrapper = styled.div`
 // }
 
 class Card extends Component {
+  
     constructor(props) {
-      super(props)
-      this.state = {
-        isFavorite: false,
+        super(props)
+        this.state = {
+          isFavorite: false,
+        }
+      }
+    
+      render() {
+        const { theme, picture, label, title } = this.props
+    
+        return (
+          <CardWrapper theme={theme} onClick={this.setFavorite}>
+            <CardLabel theme={theme}>{label}</CardLabel>
+            <CardImage src={picture} alt="freelance" />
+            <CardTitle theme={theme}>{title}</CardTitle>
+          </CardWrapper>
+        )
       }
     }
-  
-    setFavorite = () => {
-      this.setState({ isFavorite: !this.state.isFavorite })
-    }
-  
-    render() {
-      const { theme, picture, label, title } = this.props
-      const { isFavorite } = this.state
-      const star = isFavorite ? '⭐️' : ''
-  
-      return (
-        <CardWrapper theme={theme} onClick={this.setFavorite}>
-          <CardLabel theme={theme}>{label}</CardLabel>
-          <CardImage src={picture} alt="freelance" />
-          <CardTitle theme={theme}>
-            {star} {title} {star}
-          </CardTitle>
-        </CardWrapper>
-      )
-    }
-  }
+    
  
 Card.propTypes = { //Les PropTypes sont utilisés dans React pour valider les types des propriétés (props) passées aux composants.
     label: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired, //sera obligatoire lors de l'utilisation de Card
     picture: PropTypes.string,
+    theme: PropTypes.string.isRequired,
 }
 
 Card.defaultProps = {
     label: '',
     title: '',
     //picture: DefaultPicture,
+    theme: 'light',
   }
 
 export default Card

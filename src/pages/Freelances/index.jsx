@@ -2,9 +2,8 @@ import Card from '../../components/Card'
 import styled from 'styled-components'
 
 import colors from '../../utils/style/colors'
-import { Loader } from '../../utils/style/Atoms'
+import { Loader, StyledLink } from '../../utils/style/Atoms'
 import { useFetch, useTheme } from '../../utils/hooks'
- 
 
 const CardsContainer = styled.div`
   display: grid;
@@ -49,20 +48,22 @@ function Freelances() {
     <div>
       <PageTitle theme={theme}>Trouvez votre prestataire</PageTitle>
       <PageSubtitle theme={theme}>Chez Shiny, nous réunissons les meilleurs profils pour vous.</PageSubtitle>
-
+      
         {isLoading ? (
           <LoaderWrapper>
             <Loader theme={theme}  data-testid="loader"/>
           </LoaderWrapper>
         ) : (
           <CardsContainer>
-            {freelancersList.map((profile, index) => (
-              <Card
-                key={`${profile.name}-${index}`}
-                label={profile.job}
-                title={profile.name}
-                picture={profile.picture}
-              />
+            {freelancersList?.map((profile) => (
+              <StyledLink key={`freelance-${profile.id}`} to={`/profile/${profile.id}`}>
+                <Card
+                  label={profile.job}
+                  title={profile.name}
+                  picture={profile.picture}
+                  theme={theme}
+                />
+              </StyledLink>
             ))}
           </CardsContainer>
         )}
