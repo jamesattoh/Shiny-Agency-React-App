@@ -91,7 +91,7 @@ const ReplyBox = styled.button`
   box-shadow: ${(props) =>
     props.$isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'}; //ne pas oublier le $ pour indiquer a styled-components qu'il ne doit pas passer cette prop au DOM
   margin: 10px;
-  
+
   &:first-child {
     margin-right: 15px; // Applique une marge droite au premier enfant
   }
@@ -118,12 +118,10 @@ const ReplyWrapper = styled.div`
   gap: 10px;
 
   @media (max-width: 768px) {
-    background-color: red;
     gap: 8px;
   }
 
   @media (max-width: 480px) {
-    background-color: yellow;
     flex-direction: column;
     gap: 5px;
 
