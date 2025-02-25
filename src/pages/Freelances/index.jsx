@@ -12,6 +12,17 @@ const CardsContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-rows: 300px 300px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-rows: 250px 250px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 `
 const PageTitle = styled.h1`
   font-size: 30px;
@@ -19,6 +30,14 @@ const PageTitle = styled.h1`
   font-weight: 300;
   text-align: center;
   padding-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 25px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `
 const PageSubtitle = styled.h2`
   font-size: 20px;
@@ -26,6 +45,14 @@ const PageSubtitle = styled.h2`
   font-weight: 300;
   text-align: center;
   padding-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `
 const LoaderWrapper = styled.div`
   display: flex;

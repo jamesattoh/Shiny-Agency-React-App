@@ -14,6 +14,16 @@ const ResultsContainer = styled.div`
   padding: 30px;
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
+  
+  @media (max-width: 768px) {
+    margin: 40px 30px;
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    margin: 20px 15px;
+    padding: 10px;
+  }
 `
 
 const ResultsTitle = styled.h2`
@@ -25,10 +35,26 @@ const ResultsTitle = styled.h2`
   & > span { // > span cible tous les éléments <span> qui sont des enfants directs de ResultsTitle
     padding-left: 10px;
   }
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `
 
 const DescriptionWrapper = styled.div`
   padding: 60px;
+
+  @media (max-width: 768px) {
+    padding: 40px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px;
+  }
 `
 
 const JobTitle = styled.span`
@@ -51,6 +77,14 @@ const JobDescription = styled.div`
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `
 
 /** Fonction pour formater les paramètres de la requête HTTP en fonction des réponses du questionnaire. */

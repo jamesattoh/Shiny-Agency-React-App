@@ -7,10 +7,31 @@ const InputWrapper = styled.div`
   color: ${({ theme }) => (theme === 'light' ? colors.dark : 'white')};
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+
+  @media (max-width: 768px) {
+    max-width: 200px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 70%;
+    padding: 0 10px;
+  }
 `
 
 const StyledLabel = styled.label`
   color: ${({ theme }) => (theme === 'light' ? colors.dark : 'white')};
+  font-size: 1.2em;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9em;
+  }
 `
 
 const StyledInput = styled.input`
@@ -21,6 +42,16 @@ const StyledInput = styled.input`
     ${({ theme }) => (theme === 'light' ? colors.dark : 'white')};
   margin-top: 5px;
   margin-bottom: 15px;
+  font-size: 1em;
+  padding: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8em;
+  }
 `
 
 // class EmailInput extends Component {

@@ -21,6 +21,16 @@ export const Loader = styled.div` //un composant sytlisé, utilisé pour affiche
   animation: ${rotate} 1s infinite linear; //Applique l'animation de rotation définie plus haut
   height: 0;
   width: 0;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    border: 5px solid ${colors.primary};
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px;
+    border: 4px solid ${colors.primary};
+  }
 `
 
 export const StyledLink = styled(Link)` //une autre facon de rendre expotable un composant
@@ -35,5 +45,15 @@ export const StyledLink = styled(Link)` //une autre facon de rendre expotable un
     `color: white; 
     border-radius: 30px; 
     background-color: ${colors.primary};`}
+  
+  @media (max-width: 768px) {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
 `
 

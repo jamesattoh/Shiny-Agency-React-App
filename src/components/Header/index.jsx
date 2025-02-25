@@ -7,7 +7,11 @@ import LightLogo from '../../assets/light-logo.png'
 import { useTheme } from '../../utils/hooks'
 
 const HomeLogo = styled.img`
-    height: 78px
+    height: 78px;
+
+    @media (max-width: 768px) {
+        height: 60px;
+    }
 `
 
 const NavContainer = styled.nav`
@@ -15,6 +19,16 @@ const NavContainer = styled.nav`
     display: flex;
     justify-content: space-between; //l'axe horizontal
     align-items: center; //l'axe vertical
+
+    @media (max-width: 768px) {
+        padding: 20px;
+    }
+  
+    @media (max-width: 480px) {
+        flex-direction: column;
+        gap: 15px;
+    }
+
 `
 
 function Header() {

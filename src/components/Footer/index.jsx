@@ -8,10 +8,18 @@ import EmailInput from '../EmailInput'
 
 const FooterContainer = styled.footer`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding-top: 60px;
+    justify-content: space-around;
+    padding-bottom: 20px;
+
+    @media (max-width: 768px) {
+        padding-top: 40px;
+    }
+
+    @media (max-width: 480px) {
+        padding-top: 20px;
+    }
 `
  
 const NightModeButton = styled.button`
@@ -19,6 +27,15 @@ const NightModeButton = styled.button`
     border: none;
     cursor: pointer;
     color: ${({ theme }) => (theme === 'light' ? colors.secondary  : '#ffffff')};
+    margin-top: 20px;
+
+    @media (max-width: 768px) {
+        margin-top: 20px;
+    }
+
+    @media (max-width: 480px) {
+        margin-top: 10px;
+    }
 `
 
 function Footer() {

@@ -15,6 +15,17 @@ const ProfileWrapper = styled.div`
   margin: 0 90px;
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 60px 20px;
+    margin: 0 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 10px;
+    margin: 0 10px;
+  }
 `
 
 const ProfileDetails = styled.div`
@@ -22,18 +33,34 @@ const ProfileDetails = styled.div`
   flex-direction: column;
   margin-left: 50px;
   color: ${({ theme }) => (theme === 'light' ? colors.dark : 'white')};
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
+  }
 `
 
 const Picture = styled.img`
   height: 150px;
   width: 150px;
   border-radius: 75px;
+
+  @media (max-width: 480px) {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+  }
 `
 
 const Title = styled.h1`
   font-size: 25px;
   margin: 0;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `
 
 const JobTitle = styled.h2`
@@ -41,23 +68,39 @@ const JobTitle = styled.h2`
   font-size: 20px;
   margin: 0;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `
 
 const Location = styled.span`
   margin-left: 15px;
   color: ${colors.secondary};
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `
 
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 const Price = styled.span`
   padding-top: 10px;
   font-weight: 500;
   font-size: 20px;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `
 
 const SkillsWrapper = styled.div`

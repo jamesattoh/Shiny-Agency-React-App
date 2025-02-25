@@ -14,17 +14,42 @@ const SurveyContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+  }
 `
 
 const QuestionTitle = styled.h2`
   text-decoration: underline;
   text-decoration-color: ${colors.primary};
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `
 
 const QuestionContent = styled.span`
   margin: 30px;
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+
+  @media (max-width: 768px) {
+    margin: 20px;
+  }
+
+  @media (max-width: 480px) {
+    margin: 10px;
+  }
 `
 
 const LinkWrapper = styled.div`
@@ -34,6 +59,19 @@ const LinkWrapper = styled.div`
   }
   & a:first-of-type {
     margin-right: 20px; //une marge droite au premier lien (élément <a>) enfant du div
+  }
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    padding-top: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 10px;
+    & a:first-of-type {
+      margin-right: 10px;
+    }
   }
 `
 const ReplyBox = styled.button`
@@ -56,11 +94,38 @@ const ReplyBox = styled.button`
   &:last-of-type {
     margin-left: 15px; // Applique une marge gauche au dernier enfant
   }
+
+  @media (max-width: 768px) {
+    height: 80px;
+    width: 250px;
+  }
+
+  @media (max-width: 480px) {
+    height: 60px;
+    width: 200px;
+    &:first-child {
+      margin-right: 10px;
+    }
+    &:last-of-type {
+      margin-left: 10px;
+    }
+  }
 `
 
 const ReplyWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 5px;
+  }
 `
 
 
