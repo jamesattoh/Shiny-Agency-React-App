@@ -8,20 +8,22 @@ import { useFetch, useTheme } from '../../utils/hooks'
 const CardsContainer = styled.div`
   display: grid;
   gap: 24px;
-  grid-template-rows: 350px 350px;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-items: center;
 
   @media (max-width: 768px) {
-    grid-template-rows: 300px 300px;
     grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 30px;
+    justify-content: center;
   }
 
   @media (max-width: 480px) {
-    grid-template-rows: 250px 250px;
     grid-template-columns: 1fr;
+    padding: 30px;
     gap: 16px;
+    justify-content: center;
   }
 `
 const PageTitle = styled.h1`

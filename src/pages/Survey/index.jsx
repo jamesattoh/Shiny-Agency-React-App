@@ -44,10 +44,12 @@ const QuestionContent = styled.span`
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 
   @media (max-width: 768px) {
+    text-align: center;
     margin: 20px;
   }
 
   @media (max-width: 480px) {
+    text-align: center;
     margin: 10px;
   }
 `
@@ -88,6 +90,8 @@ const ReplyBox = styled.button`
   cursor: pointer;
   box-shadow: ${(props) =>
     props.$isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'}; //ne pas oublier le $ pour indiquer a styled-components qu'il ne doit pas passer cette prop au DOM
+  margin: 10px;
+  
   &:first-child {
     margin-right: 15px; // Applique une marge droite au premier enfant
   }
@@ -103,12 +107,6 @@ const ReplyBox = styled.button`
   @media (max-width: 480px) {
     height: 60px;
     width: 200px;
-    &:first-child {
-      margin-right: 10px;
-    }
-    &:last-of-type {
-      margin-left: 10px;
-    }
   }
 `
 
@@ -120,11 +118,15 @@ const ReplyWrapper = styled.div`
   gap: 10px;
 
   @media (max-width: 768px) {
+    background-color: red;
     gap: 8px;
   }
 
   @media (max-width: 480px) {
+    background-color: yellow;
+    flex-direction: column;
     gap: 5px;
+
   }
 `
 

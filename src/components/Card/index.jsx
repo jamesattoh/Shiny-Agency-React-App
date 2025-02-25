@@ -49,12 +49,8 @@ const CardWrapper = styled.div`
       cursor: pointer; //change le curseur fleche en curseur "main"
       box-shadow: 2px 2px 10px #e2e3e9;
   }
-
-  @media (min-width: 768px) {
-    max-width: 300px;
-  }
   
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     max-width: 250px;
   }
   
