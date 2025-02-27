@@ -186,7 +186,7 @@ function Survey() { //ce composant repose principalement sur l'utilisation des p
 
           <LinkWrapper theme={theme}>
               <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
-              { questionNumberInt === 10 ? (
+              { questionNumberInt === 6 ? (
                   <Link to="/results">Résultats</Link>
               ): (
                   <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
